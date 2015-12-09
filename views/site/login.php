@@ -1,15 +1,14 @@
 <?php
-
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
-
+use yii\widgets\ActiveForm;
+use yii\web\Session;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-
+$session = new Session();
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php if($session->hasFlash('message')){?>
+<div class="alert alert-danger" role="alert"><?=$session->getFlash('message');?></div>
+<?php }?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -24,13 +23,13 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-        <?= $form->field($model, 'username') ?>
+        <?= $form->field($login, 'usr')->label("Username") ?>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
+        <?= $form->field($login, 'pwd')->passwordInput()->label("Password"); ?>
 
-        <?= $form->field($model, 'rememberMe')->checkbox([
+        <?php /*$form->field($model, 'rememberMe')->checkbox([
             'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
+        ])*/ ?>
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
@@ -40,8 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php ActiveForm::end(); ?>
 
-    <div class="col-lg-offset-1" style="color:#999;">
+    <?php /*<div class="col-lg-offset-1" style="color:#999;">
         You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
         To modify the username/password, please check out the code <code>app\models\User::$users</code>.
-    </div>
+    </div>*/?>
 </div>

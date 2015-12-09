@@ -8,7 +8,8 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-
+use yii\web\Session;
+$session = new Session();
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -22,6 +23,8 @@ AppAsset::register($this);
     <?php $this->head() ?>
 
     <link rel="stylesheet" type="text/css" href="css/Mytheme.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -35,21 +38,20 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    if($session['usr']!="") {
+        $welcome =  $session['usr'];
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => '<span class="glyphicon glyphicon-home">  </span>  Home', 'url' => ['/site/index']],
+            ['label' => '<span class="glyphicon glyphicon-signal"></span>  Statistic', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ?
-                ['label' => 'Login', 'url' => ['/site/login']] :
-                [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ],
+            ['label' => '<span class="glyphicon glyphicon-off">  </span>  Logout','url' => ['/user/logout']] ,
+            ['label' =>  '<span class="glyphicon glyphicon-user">  </span> '.$welcome],    
         ],
+        'encodeLabels' => false,   
     ]);
+}
     NavBar::end();
     ?>
 

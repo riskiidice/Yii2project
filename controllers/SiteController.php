@@ -15,9 +15,9 @@ class SiteController extends Controller
     {
         $session = new Session();
         
-       if(!$session['username'])
+       if($session['usr'] == "")
         {
-          return $this->render('//site/index');
+          $this->redirect('index.php?r=user/login');
         }
     }
 
@@ -26,20 +26,6 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
-    public function actionLogin()
-    {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
 
     public function actionLogout()
     {
