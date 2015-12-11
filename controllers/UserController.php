@@ -30,6 +30,7 @@ class UserController extends Controller
             $login_read = new Tb_Users();
             return $this->render('//site/login',['login'=>$login_read]);
         }
+  
     public function actionLogout()
     {
             $session = new Session();

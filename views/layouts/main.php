@@ -24,13 +24,18 @@ AppAsset::register($this);
 
     <link rel="stylesheet" type="text/css" href="css/Mytheme.css" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
+     <!-- CuFon: Enables smooth pretty custom font rendering. 100% SEO friendly. To disable, remove this section -->
+     <link rel="stylesheet" type="text/css" href="css/style.css" >
+    <script type="text/javascript" src="js/cufon-yui.js"></script>
+    <script type="text/javascript" src="js/georgia.js"></script>
+    <script type="text/javascript" src="js/cuf_run.js"></script>
+    <!-- CuFon ends -->
 </head>
 <body>
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
+    <?php /*
     NavBar::begin([
         'brandLabel' => 'My Company',
         'brandUrl' => Yii::$app->homeUrl,
@@ -53,7 +58,30 @@ AppAsset::register($this);
     ]);
 }
     NavBar::end();
-    ?>
+    */?>
+
+ <div class="header">
+    <div class="header_resize">
+      <div class="logo"><h1><a href="index.php">Funky Times</a></h1></div>
+    </div>
+  </div>
+  <div class="menu_nav">
+    <div class="menu_nav_resize">
+     <?php
+  if($session['usr']!="")
+  {
+    $welcome =  $session['usr'];
+ ?>
+      <ul>
+        <li class="active"><a href="index.php"><span class="glyphicon glyphicon-home"></span>  Home</a></li>
+        <li><a href="blog.html"><span class="glyphicon glyphicon-signal"></span>  Statistic</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="index.php?r=user/logout"><span class="glyphicon glyphicon-off">  </span> Logout</a></li>
+        <li><a hred="#"><span class="glyphicon glyphicon-user"> <?=$welcome?>  </span></a> </li>
+      </ul>
+      <?php }?>
+    </div>
+  </div>
 
     <div class="container">
         <?= Breadcrumbs::widget([
