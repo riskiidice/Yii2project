@@ -22,7 +22,7 @@ class UserController extends Controller
             ->one();
             if(!empty($user)){
             $session['usr'] = $user->usr;
-            $session['active_menu'] = ""
+            $session['active_menu'] = "";
             return $this->redirect('index.php?r=site/index');   
             }else{
              $session->setFlash('message','Username หรือ Password ไม่ถูกต้อง');

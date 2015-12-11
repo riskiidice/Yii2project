@@ -9,6 +9,8 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use yii\web\Session;
+use app\models\Tb_Task;
+
 class SiteController extends Controller
 {
     public function init()
@@ -23,7 +25,9 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $Tb_Task = new Tb_Task();
+        $data = $Tb_Task->find()->all();
+        return $this->render('index',['data'=>$data]);
     }
 
 
@@ -50,5 +54,9 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    public function actionOldconfig()
+    {
+
     }
 }

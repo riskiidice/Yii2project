@@ -29,6 +29,8 @@ AppAsset::register($this);
     <script type="text/javascript" src="js/cufon-yui.js"></script>
     <script type="text/javascript" src="js/georgia.js"></script>
     <script type="text/javascript" src="js/cuf_run.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- CuFon ends -->
 </head>
 <body>
